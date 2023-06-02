@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Manager</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+<div id="app" class="container">
+    <h1>Client Manager</h1>
+
+
+    <form @submit.prevent="addClient">
+        <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" class="form-control" id="firstName" v-model="clientData.firstName" required>
+        </div>
+        <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" class="form-control" id="lastName" v-model="clientData.lastName" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" v-model="clientData.email" required>
+        </div>
+        <button type="submit" class="btn btn-success">Add Client</button>
+    </form>
+
+
+    <h2>Client List</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>First Name</th>
+            <th>Last Name</th>
+            <th>Email</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="client in clients" :key="client.id">
+            <td>{{ client.firstName }}</td>
+            <td>{{ client.lastName }}</td>
+            <td>{{ client.email }}</td>
+            <td>
+                <button @click="deleteClient(client)" class="btn btn-danger">Borrar</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <h2>Client REST Response</h2>
+    <pre>
+  <code>{{ responseData }}</code>
+</pre>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="manager.js"></script>
+</body>
+</html>
